@@ -1,0 +1,419 @@
+{
+  "version": 1,
+  "dataset_seed": 1707,
+  "split_seed": 909,
+  "max_depth": 5,
+  "min_leaf": 5,
+  "label_rule": "Among goal-passing schedulers, minimum average waiting then minimum switches; ties follow FCFS, SJF, Priority, RR order. NONE means none passes.",
+  "features": {
+    "job_count": "number of jobs",
+    "mean_burst": "average CPU burst",
+    "max_burst": "longest CPU burst",
+    "burst_spread": "variation in CPU bursts",
+    "arrival_spread": "arrival time spread",
+    "initial_jobs": "jobs at first arrival",
+    "target_fraction": "fraction of jobs checked by the goal",
+    "priority_spread": "priority spread",
+    "quantum": "Round Robin time slice",
+    "switch_cost": "switch cost",
+    "threshold": "goal limit",
+    "metric_response": "goal measures first response (1=yes)",
+    "metric_waiting": "goal measures waiting (1=yes)",
+    "metric_turnaround": "goal measures turnaround (1=yes)",
+    "metric_ready_wait": "goal measures continuous ready wait (1=yes)",
+    "average_goal": "goal checks an average (1=yes)",
+    "strict_goal": "goal uses a strict limit (1=yes)"
+  },
+  "feature_ranges": {
+    "job_count": [
+      3,
+      10
+    ],
+    "mean_burst": [
+      4.0,
+      17.0
+    ],
+    "max_burst": [
+      6,
+      20
+    ],
+    "burst_spread": [
+      1.247219128924647,
+      7.717224601860151
+    ],
+    "arrival_spread": [
+      0,
+      10
+    ],
+    "initial_jobs": [
+      1,
+      10
+    ],
+    "target_fraction": [
+      0.1111111111111111,
+      1.0
+    ],
+    "priority_spread": [
+      0,
+      4
+    ],
+    "quantum": [
+      1,
+      4
+    ],
+    "switch_cost": [
+      0,
+      1
+    ],
+    "threshold": [
+      1,
+      35
+    ],
+    "metric_response": [
+      0,
+      1
+    ],
+    "metric_waiting": [
+      0,
+      1
+    ],
+    "metric_turnaround": [
+      0,
+      1
+    ],
+    "metric_ready_wait": [
+      0,
+      1
+    ],
+    "average_goal": [
+      0,
+      1
+    ],
+    "strict_goal": [
+      0,
+      1
+    ]
+  },
+  "evaluation": {
+    "train_count": 192,
+    "test_count": 48,
+    "correct": 32,
+    "accuracy": 0.6666666666666666,
+    "baseline_label": "NONE",
+    "baseline_accuracy": 0.5625,
+    "train_labels": {
+      "SJF": 43,
+      "NONE": 111,
+      "FCFS": 8,
+      "RR": 30
+    },
+    "test_labels": {
+      "NONE": 27,
+      "SJF": 13,
+      "RR": 8
+    },
+    "confusion_matrix": {
+      "FCFS": {
+        "FCFS": 0,
+        "SJF": 0,
+        "Priority": 0,
+        "RR": 0,
+        "NONE": 0
+      },
+      "SJF": {
+        "FCFS": 0,
+        "SJF": 7,
+        "Priority": 0,
+        "RR": 0,
+        "NONE": 6
+      },
+      "Priority": {
+        "FCFS": 0,
+        "SJF": 0,
+        "Priority": 0,
+        "RR": 0,
+        "NONE": 0
+      },
+      "RR": {
+        "FCFS": 0,
+        "SJF": 3,
+        "Priority": 0,
+        "RR": 3,
+        "NONE": 2
+      },
+      "NONE": {
+        "FCFS": 2,
+        "SJF": 1,
+        "Priority": 0,
+        "RR": 2,
+        "NONE": 22
+      }
+    }
+  },
+  "tree": {
+    "prediction": "NONE",
+    "counts": {
+      "FCFS": 8,
+      "NONE": 111,
+      "RR": 30,
+      "SJF": 43
+    },
+    "samples": 192,
+    "feature": "threshold",
+    "threshold": 24.5,
+    "left": {
+      "prediction": "NONE",
+      "counts": {
+        "FCFS": 7,
+        "NONE": 104,
+        "RR": 20,
+        "SJF": 17
+      },
+      "samples": 148,
+      "feature": "target_fraction",
+      "threshold": 0.26785714285714285,
+      "left": {
+        "prediction": "SJF",
+        "counts": {
+          "FCFS": 1,
+          "SJF": 5
+        },
+        "samples": 6
+      },
+      "right": {
+        "prediction": "NONE",
+        "counts": {
+          "FCFS": 6,
+          "NONE": 104,
+          "RR": 20,
+          "SJF": 12
+        },
+        "samples": 142,
+        "feature": "job_count",
+        "threshold": 3.5,
+        "left": {
+          "prediction": "SJF",
+          "counts": {
+            "FCFS": 5,
+            "NONE": 5,
+            "RR": 2,
+            "SJF": 6
+          },
+          "samples": 18,
+          "feature": "threshold",
+          "threshold": 11.5,
+          "left": {
+            "prediction": "FCFS",
+            "counts": {
+              "FCFS": 5,
+              "NONE": 5,
+              "RR": 2,
+              "SJF": 1
+            },
+            "samples": 13,
+            "feature": "arrival_spread",
+            "threshold": 1.5,
+            "left": {
+              "prediction": "NONE",
+              "counts": {
+                "FCFS": 1,
+                "NONE": 4
+              },
+              "samples": 5
+            },
+            "right": {
+              "prediction": "FCFS",
+              "counts": {
+                "FCFS": 4,
+                "NONE": 1,
+                "RR": 2,
+                "SJF": 1
+              },
+              "samples": 8
+            }
+          },
+          "right": {
+            "prediction": "SJF",
+            "counts": {
+              "SJF": 5
+            },
+            "samples": 5
+          }
+        },
+        "right": {
+          "prediction": "NONE",
+          "counts": {
+            "FCFS": 1,
+            "NONE": 99,
+            "RR": 18,
+            "SJF": 6
+          },
+          "samples": 124,
+          "feature": "average_goal",
+          "threshold": 0.5,
+          "left": {
+            "prediction": "NONE",
+            "counts": {
+              "NONE": 22,
+              "RR": 13
+            },
+            "samples": 35,
+            "feature": "quantum",
+            "threshold": 1.5,
+            "left": {
+              "prediction": "RR",
+              "counts": {
+                "NONE": 2,
+                "RR": 8
+              },
+              "samples": 10
+            },
+            "right": {
+              "prediction": "NONE",
+              "counts": {
+                "NONE": 20,
+                "RR": 5
+              },
+              "samples": 25
+            }
+          },
+          "right": {
+            "prediction": "NONE",
+            "counts": {
+              "FCFS": 1,
+              "NONE": 77,
+              "RR": 5,
+              "SJF": 6
+            },
+            "samples": 89,
+            "feature": "job_count",
+            "threshold": 6.5,
+            "left": {
+              "prediction": "NONE",
+              "counts": {
+                "FCFS": 1,
+                "NONE": 26,
+                "RR": 3,
+                "SJF": 6
+              },
+              "samples": 36
+            },
+            "right": {
+              "prediction": "NONE",
+              "counts": {
+                "NONE": 51,
+                "RR": 2
+              },
+              "samples": 53
+            }
+          }
+        }
+      }
+    },
+    "right": {
+      "prediction": "SJF",
+      "counts": {
+        "FCFS": 1,
+        "NONE": 7,
+        "RR": 10,
+        "SJF": 26
+      },
+      "samples": 44,
+      "feature": "metric_ready_wait",
+      "threshold": 0.5,
+      "left": {
+        "prediction": "SJF",
+        "counts": {
+          "FCFS": 1,
+          "NONE": 7,
+          "RR": 1,
+          "SJF": 20
+        },
+        "samples": 29,
+        "feature": "job_count",
+        "threshold": 8.5,
+        "left": {
+          "prediction": "SJF",
+          "counts": {
+            "FCFS": 1,
+            "NONE": 3,
+            "RR": 1,
+            "SJF": 19
+          },
+          "samples": 24,
+          "feature": "quantum",
+          "threshold": 1.5,
+          "left": {
+            "prediction": "NONE",
+            "counts": {
+              "FCFS": 1,
+              "NONE": 2,
+              "RR": 1,
+              "SJF": 2
+            },
+            "samples": 6
+          },
+          "right": {
+            "prediction": "SJF",
+            "counts": {
+              "NONE": 1,
+              "SJF": 17
+            },
+            "samples": 18,
+            "feature": "burst_spread",
+            "threshold": 5.5172987717402036,
+            "left": {
+              "prediction": "SJF",
+              "counts": {
+                "SJF": 13
+              },
+              "samples": 13
+            },
+            "right": {
+              "prediction": "SJF",
+              "counts": {
+                "NONE": 1,
+                "SJF": 4
+              },
+              "samples": 5
+            }
+          }
+        },
+        "right": {
+          "prediction": "NONE",
+          "counts": {
+            "NONE": 4,
+            "SJF": 1
+          },
+          "samples": 5
+        }
+      },
+      "right": {
+        "prediction": "RR",
+        "counts": {
+          "RR": 9,
+          "SJF": 6
+        },
+        "samples": 15,
+        "feature": "initial_jobs",
+        "threshold": 4.5,
+        "left": {
+          "prediction": "SJF",
+          "counts": {
+            "RR": 3,
+            "SJF": 5
+          },
+          "samples": 8
+        },
+        "right": {
+          "prediction": "RR",
+          "counts": {
+            "RR": 6,
+            "SJF": 1
+          },
+          "samples": 7
+        }
+      }
+    }
+  }
+}

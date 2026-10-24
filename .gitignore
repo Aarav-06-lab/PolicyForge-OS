@@ -1,0 +1,24 @@
+# Python and local environments
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+
+# Credentials and machine-specific settings
+.env
+.env.*
+!.env.example
+*.key
+*.pem
+.DS_Store
+
+# Temporary builds and dependency folders
+work/
+.chart-data-*/
+node_modules/
+*.log
+
+# Keep the final review deck, not duplicate drafts
+outputs/*
+!outputs/PolicyForge_AI_Review.pptx
